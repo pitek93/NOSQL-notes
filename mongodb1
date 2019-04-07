@@ -1,0 +1,112 @@
+sudo docker create --name bazyII
+sudo docker run -it --name bazyII -v /home/pk-7/bazy:/data ubuntu
+sudo docker images
+sudo exec i -t nazwa bash
+sudo start
+sudo docker container ls
+
+json-bson
+CRUD? _id  <uid> identyf , key1, key2, update append only
+typ prosty float string
+
+db (kolekcja 1,2,3, dokument 1,2,3)
+show dbs
+show collections
+use hell
+doc = { 'Hello' : 'World" , 'Imie' : 'Jan' }
+
+db.docs.insert(doc)
+db.docs.insert({'imie':'Adam', 'nazwisko': 'nowak'})
+db.docs.count()
+
+query by example:
+db.docs.find({})
+db.docs.find({}).explain()
+db.docs.find({'imie':'adam'}.explain - to skanuje caly dysk
+db.docs.findOne('idobiektu')
+db.docs.findOne('idobiektu').explain
+db.docs.findOne('id': 'idobiektu').explain odwolanie do indeksu szybkie przeszukiwanie czytamy indeks i 1 blok danych
+
+./mongo
+use tests
+help
+show collections
+db.restaurants.find({}).limit(2).pretty()
+db.restaurants.find({}{'name' : 1}).limit(2).pretty() - przyklad projekcji
+var q = db.restaurants.find({})
+q.limit(3)
+
+
+selekcja/projekcja
+
+https://raw.githubusercontent.com/mongodb/docs-assets/primer-dataset/primer-dataset.json
+
+db.restaurants.find({"cuisine" : 'Bakery' })
+
+var q = db.restaurants.find({"cuisine" : 'Bakery' },{'name':1,'_id':0})
+
+
+q.forEach (function(doc) {print(doc['name'])}) 
+
+var doc = db.restaurants.find({})
+'coord' in doc.address
+doc.address.
+var doc = db.restaurants.find({}).limit(10)
+
+
+
+
+
+
+use test
+var it = db.restaurants.find({},{'address':1})
+while(it.hasNext()){
+	var doc = it.next()
+	if ('building' in doc ['address']){
+		print("znalazlem obiekt z adresem");
+		print(doc['_id']);
+	}
+}
+
+(czy w polu adres jest podpole building)
+
+
+
+db.restaurants.find({'address' : {$exists : false}}).count()
+db.restau
+mongodb predicates zamiast zczytywac cala baze
+
+ocena > 90??
+
+
+
+
+
+
+
+
+
+moodle
+bazy danych 816
+nOsql
+
+
+.pretty() - ladniejsze formatowanie
+db.restaurants.find({}, {'_id':0, 'name':1})
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

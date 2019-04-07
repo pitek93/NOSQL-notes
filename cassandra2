@@ -1,0 +1,80 @@
+
+sudo docker run --name cassandra_bdii -d cassandra:3.11
+sudo docker container ls -a
+sudo docker run -v ./bdii:/host_data --name cass_bdii cassandra:3.11
+sudo docker exec -it 6c1e1b7fa726
+sudo-apt get update && apt-get ipython python-pip
+
+cd host_data
+cqlsh
+
+zad wyciagnij filmy po nazwie i po roku:
+
+CREATE KEYSPACE videos WITH REPLICATION = {'class' : 'SimpleStrategy', 'replication_factor' : '1'} AND durable_writes = true;
+
+
+CREATE TABLE videos_by_title_year(
+	title text,
+	added_year int,
+	added_data timestamp,
+	description text,
+	user_id uuid,
+	video_id timeuuid,
+	primary key ((title, added_year)) // klucz kompozytowy wartosc jednego klucza i w 2 klucza 
+(added_year,title)pojedyncze nawiasy klucz i klucz klasteryzacji
+primary key ((title, added_year), video_id)
+((title),added_year) znaczy jeszcze cos innego klucz z jednej kolumny z kluczem klasteryzacji
+				
+)
+
+wielkosc partycji ~100mb
+
+COPY videos_by_title 
+FROM '/host_data/videos_by_title_yev' 
+WITH HEADER=true
+
+SELECT COUNT (*) from bvideos_by_title_year; WHERE title = "AzureDeb" and added_year = 2015
+
+SELECT COUNT (*) from bvideos_by_title_year; WHERE title = "AzureDeb" and added_year = 2015
+
+UPDATE cyclic.popular_count
+
+
+pycassaShell -k videos
+SYSTEM_MANAGET.creaete_column_family('videos', 'my_cf')
+pip install pycassa
+import pycassa
+pool = pycassa.ConnectionPool('videos') //basen polaczen zablokowanie polaczenia + odczyt
+my_cf = pycassa.ColumnFamily(pool, 'videos') //tworzenie rodziny kolumn 'nazwa tabeli'
+my_cf.+tab
+my_cf.insert('k1', {'val1' 'col2':'val2})
+my_cf.get('k1')
+cqlsh modelowanie danych, python pobieranie danych (model na moodle)
+ks_videos = SYSTEM_MANAGER.get
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

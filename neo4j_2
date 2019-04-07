@@ -1,0 +1,64 @@
+zajecia movie.cypher z moodla
+
+Match (a) -- (b) Return a,b; 
+
+match (a)-[r]-(b) Return a,r,b; wszystkie wezly i wszystkie rel
+
+match (a:Person)-[r]-(b) Return a,r,b; wezel a z labelem osoby
+
+match (a:Person)-[r]-(b:Person) Return a,r,b;
+
+MATCH (a:Person) WHERE a.name="Tom Hanks" RETURN a;
+
+explain MATCH (a:Person) WHERE a.name="Tom Hanks" RETURN a; plan zapytania
+
+explain MATCH (a) WHERE a.name="Tom Hanks" RETURN a; bez labela
+
+operacje dyskowe procesorowe / neo4j operacje wierszowe
+
+match (tom:Person {name:"Tom Hanks"})-[:ACTED_IN]->(:Movie)<-[:DIRECTED]-(director:Person) Return director;
+
+match (tom:Person {name:"Tom Hanks"})-[:ACTED_IN]->(:Movie)<-[:DIRECTED]-(director:Person) Return director.name;
+
+match (tom:Person {name:"Tom Hanks"})-[:ACTED_IN]->(:Movie)<-[:DIRECTED]-(director:Person) Return count(director.name) as iloscroznychrezyserow;
+
+match (tom:Person {name:"Tom Hanks"})-[r1:ACTED_IN]->(m:Movie)<-[r2:DIRECTED]-(director:Person) Return tom,m,r1,r2,director;
+
+match p=(tom:Person {name:"Tom Hanks"})-[r1:ACTED_IN]->(m:Movie)<-[r2:DIRECTED]-(director:Person) Return p;
+
+mozna uzywac fcje agregujace np count
+
+MATCH (actor:Person)-[:ACTED_IN]->(movie:Movie) WITH actor, count(movie) as c WHERE c < 3 RETURN actor.name, c ORDER BY c;
+aktorzy ktorzy grali mniej niz w 3 filmach
+
+MATCH (actor:Person)-[:ACTED_IN]->(movie:Movie)
+WITH actor, count(movie) as c 
+WHERE c >= 7 
+MATCH (top_actor)-[:ACTED_IN]->(:Movie)<-[:DIRECTED]-(d:Person)
+RETURN distinct d.name;
+
+with == podzapytanie w sql
+
+CREATE INDEX ON :Person(name);
+
+
+CREATE INDEX ON :Person(born);
+MATCH (p:Person) WHERE p.born > 1960 return p;
+
+collect == group by bierzewezly uklada w liste (B+drzewo)
+
+MATCH (p:Person)-[:ACTED_IN]->(m:Movie) return p, COLLECT(m.title); cos jak group by
+
+kod w jsonie
+
+MATCH (a)-[r:REVIEWED|:PRODUCED]-(b) RETURN a,b
+
+tworzenie indeksow
+()wezly []relacje
+
+MATCH (tom:Person{name:"Tom Hanks"}),(angela:Person{name:"Angela Scope})
+WITH tom, angela
+Match (tom)-[r]-(n1)-[r2]-(n2)-[r3]-angela
+return tom, angela, r, r2, r33
+
+

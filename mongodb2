@@ -1,0 +1,75 @@
+use test
+
+//1. wszystkie dokumenty w kolekcji restaurants.
+db.restaurants.find({})
+
+
+//2. pola restaurant_id, borough, cusine dla wszystkich dokumentów w kolekcji restaurants.
+db.restaurants.find({})
+db.restaurants.find({}, {'restaurant_id': '0'})
+
+
+//3. taki sam wynik jak wyżej ale nie zwróci pola _id
+
+
+//4. wszystkie restauracje w dzielnicy Bronx
+db.restaurants.find({'borough':'Bronx'}, {'borough': 'Bronx'})
+
+//5. pierwszych pięć restuaracji w Bronx po pominięciu pierwszych 10ciu
+
+
+6. restauracje, które otrzymały więcej niż 90 punktów
+db.restaurants.find({'grades.score' : {'$gt':90}},).pretty()
+//sprawdzamy czy jest takie pole grades.score  [] tablica
+
+7. restauracje, które otrzymły więcej niż 80 punktów ale mniej niż 100.
+
+
+8. restauracje, które nie przygotowują kuchni 'American' oraz znajdują się poniżej długości geograficznej -65.754168
+
+
+9. restauracje, które nie przygotowują kuchni 'American i orzymałe punktacje A oraz nie należą do dzielnicy 'Brooklyn'. Wyniki posortuj według pola 'cousine' w malejącym porządku
+
+
+10. pola restuarant_id, name, borough oraz cusine dla tych restauracji, ktore posiadaja ciąg znaków 'Wil' jako trzy pierwsze litery swojej nazwy
+
+
+11. pola te same co wyżej ale dla takich ktore posiadaja ciąg znaków 'Reg' w dowolnym miejscu swojej nazwy
+12. pola restrauacje które znajdują się w 'Bronx' i przygotowują kuchnie albo 'American' albo 'Chinese'
+13. pola restauracje, które leża w dzielnicy 'Staten Island', 'Queens', 'Bronxs' lub 'Brooklyn'
+14. pola restaurant Id, name, borough i cuisine dla tych restauracji, które otrzymały score nie wyższy niż 10.
+15. pola restaurant Id, name oraz grades dla tych restauracji, które otrzymały ocenę 'A' i score 11 w czasie ISODate "2014-08-11T00:00:00Z" odawania ankiet.
+16. pola restaurant Id, name oraz grades dla restauracji tórych 2gi element tablicy ocen wynosi 'A' oraz punktacja na poziomie 9 w ISODate "2014-08-11T00:00:00Z"
+17. restaurant Id, name, address i pozycje geograficzną dla resturacji, który drugi element tablicy 'coord' przechowuje wartość pomiędzy 42 do 52
+18. posłuży do uzyskania informacji czy wszystkie pola posiadają pola 'street'
+19. wszystkie dokumenty w kolecji restaurants, których drugie pole tablicy coord jest typu Double
+20. pola restaurant Id, name and grades z restruacji ktorych reszta dzielenia oceny zwroci 0 przy dzieleniu przez 7
+
+
+db.restaurants.find({'grades.1.score' : {'$gt':30}},).pretty()
+//sprawdzad czy pierwsze pole grades
+
+
+
+
+
+({address.coord.0' :  {'$lt' : -65.03}})
+
+
+
+
+
+
+
+
+geohash
+
+
+
+
+
+geospatial query
+
+adventure works sales
+
+zrobic SOH-SOD ale w mariadb nie ma relacji

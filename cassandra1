@@ -1,0 +1,52 @@
+master-slave CAP zwieksza osiag kosztem spoj
+osiagalnosc partycjonowanie = cassandra master-master (hot copy) podl wezlow do ringa
+replication factor =2, partition strategy = simple dystrybucje po kluczu,THRIFT protocol
+consistency = ewentualna spojnosc
+osiagalnosc spojnos RDBMS
+apache cassandra model
+
+sudo docker container ls
+sudo docker exec -it eefadafff5a8 bash
+cqlsh - uruchomienie bd
+
+CREATE KEYSPACE ks_test WITH REPLICATION = {'class' : 'SimpleStrategy', 'replication_factor' : '1'} AND durable_writes = true;
+DESCRIBE ks_test
+ 
+
+CREATE TABLE tab1 (col1 TEXT, col2 INT, col3 DATE, PRIMARY KEY col2)
+DESCRIBE tab1
+
+
+INSERT INTO tab1(col1, col2, col3) VALUES ('Meina', '1', '2017-01-01');
+INSERT INTO tab1(col1, col2, col3) VALUES ('Kowalski', '2', '2017-01-01');
+
+
+SELECT * FROM tab1;
+SELECT * FROM tab1 WHERE col1 = 'Meina';
+
+//usuwanie timestamp
+nodetool compact
+
+use ks_test;
+
+update tab1 set col1 = 'Kwowalski'WHERE col2 = 2;
+select * FROM tab1
+update col1 
+
+upsert - insert + update
+
+apt-get update && apt get-install wget
+
+CREATE TABLE tab (col1 UUID, col2 DATE, col3 TEXT, col4 TEXT, col1 PRIMARY KEY);
+
+
+CREATE TABLE videos (video_id uuid, added_date timestamp, description text, title text, user_id uuid, PRIMARY KEY(video_id));
+COPY videos FROM videos.csv;
+SELECT count(*) FROM videolist
+
+
+1. redundancja
+2. najpierw zapyt potem model
+3.
+
+
